@@ -18,8 +18,22 @@ services:
         uid: '101'
         gid: '101'
         mode: 0644
+      - source: zone.ipv4.rev
+        target: /var/lib/bind/zone.ipv4.rev
+        uid: '101'
+        gid: '101'
+        mode: 0644
+      - source: zone.ipv6.rev
+        target: /var/lib/bind/zone.ipv6.rev
+        uid: '101'
+        gid: '101'
+        mode: 0644
 configs:
   named.conf:
     file: ./named.conf
-  ziinc.us.db:
+  zone.db:
     file: ./zone.db
+  zone.ipv4.rev:
+    file: ./zone.ipv4.rev
+  zone.ipv6.rev:
+    file: ./zone.ipv6.rev
