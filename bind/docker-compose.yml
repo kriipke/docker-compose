@@ -1,0 +1,25 @@
+version: '3.5'
+
+services:
+  bind9:
+    restart: always
+    image: ubuntu/bind9
+    ports:
+      - "53:53/udp"
+      - "53:53/tcp"
+    configs:
+      - source: named.conf
+        target: /etc/bind/named.conf
+        uid: '101'
+        gid: '101'
+        mode: 0644
+      - source: zone.db
+        target: /var/lib/bind/zone.db
+        uid: '101'
+        gid: '101'
+        mode: 0644
+configs:
+  named.conf:
+    file: ./named.conf
+  ziinc.us.db:
+    file: ./zone.db
