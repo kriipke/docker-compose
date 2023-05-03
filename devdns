@@ -1,0 +1,20 @@
+#
+#  This container is more for maniplating DNS
+#  traffic during application development vs prod
+#
+---
+version: "3.5"
+
+services:
+  bind:
+    image: cytopia/bind
+    environment:
+      # The following catches all queries matching the
+      # pattern and redirects them to the given IP.
+      DNS_A: '*.ziinc.dev=10.2.0.99'
+      DNS_FORWARDER: '8.8.8.8,8.8.4.4'
+      ALLOW_QUERY: '10.2.0.0/24,127.0.0.1'
+      ALLOW_RECURSION: 'any'
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
